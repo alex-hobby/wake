@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import mapboxgl from 'mapbox-gl';
-import {SmoothieChart, TimeSeries} from "smoothie"; // eslint-disable-line import/no-webpack-loader-syntax
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWhvYmJ5OTgiLCJhIjoiY2t1OHRoaGtpMDBieDJvcWp0OGZoN2pzbyJ9.7o5aIZFLVU4mnhXKFYMV3g';
 
@@ -32,29 +31,8 @@ export default function App() {
     });
 });
 
-
-    var smoothie = new SmoothieChart();
-    smoothie.streamTo(document.getElementById("mycanvas"));
-    // Data
-    var line1 = new TimeSeries();
-    var line2 = new TimeSeries();
-
-// Add a random value to each line every second
-    setInterval(function() {
-        line1.append(new Date().getTime(), Math.random());
-        line2.append(new Date().getTime(), Math.random());
-    }, 1000);
-
-// Add to SmoothieChart
-    smoothie.addTimeSeries(line1);
-    smoothie.addTimeSeries(line2);
-
-    smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
-
-
-
 return (
-    <div>
+    <div class="page-container">
         <div className="sidebar">
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
