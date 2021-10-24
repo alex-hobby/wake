@@ -12,18 +12,11 @@ export default function App() {
     const [lat, setLat] = useState(33.7490);
     const [zoom, setZoom] = useState(9);
 
-    // Set marker options.
-    const marker = new mapboxgl.Marker({
-    color: "#FFFFFF",
-    draggable: false
-    }).setLngLat([-84.3880, 33.7490])
-    .addTo(map);
-
     useEffect(() => {
         if (map.current) return; // initialize map only once
             map.current = new mapboxgl.Map({
             container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/navigation-day-v1',
+            style: 'mapbox://styles/ahobby98/ckv4wmk3u63hr14qm0n4dlsqa',
             center: [lng, lat],
             zoom: zoom
         });
