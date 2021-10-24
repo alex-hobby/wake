@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWhvYmJ5OTgiLCJhIjoiY2t1OHRoaGtpMDBieDJvcWp0OGZoN2pzbyJ9.7o5aIZFLVU4mnhXKFYMV3g';
 
@@ -32,11 +32,12 @@ export default function App() {
 });
 
 return (
-    <div>
+    <div class="page-container">
         <div className="sidebar">
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
         <div ref={mapContainer} className="map-container" />
     </div>
+
     );
 }
