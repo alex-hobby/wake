@@ -12,6 +12,13 @@ export default function App() {
     const [lat, setLat] = useState(33.7490);
     const [zoom, setZoom] = useState(9);
 
+    // Set marker options.
+    const marker = new mapboxgl.Marker({
+    color: "#FFFFFF",
+    draggable: false
+    }).setLngLat([-84.3880, 33.7490])
+    .addTo(map);
+
     useEffect(() => {
         if (map.current) return; // initialize map only once
             map.current = new mapboxgl.Map({
