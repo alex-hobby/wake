@@ -1,17 +1,16 @@
 from pylsl import StreamInlet, resolve_stream
-
-
-
-
+import requests
+import json
 
 def main():
     time_start_sleep = 0
-    time_delay = 3
+    time_delay = 4
     maybe_sleeping = False
     alpha_boundary = 16
 
     sampling_every = 10
     sample_count = 0
+    previous = False
 
     # first resolve an EEG stream on the lab network
     print("looking for an EEG stream...")
@@ -38,6 +37,7 @@ def main():
 
         asleep = False
 
+
         if max_f > alpha_boundary:
             maybe_sleeping = False
             asleep = False
@@ -50,10 +50,21 @@ def main():
         else:
             asleep = False
 
+        if asleep != previous:
+            requests.get("http://10.136.7.139:5000/sleeping/" + ("1" if asleep else "0"))
+
+            location = json.loads(requests.get("https://ipinfo.io/38.101.220.234?token=80e5db5f07dde1"))
+            loc = location["loc"].split(",")
+
+
         if asleep:
-            print("Asleep!" + str(max_f))
+            print("Asleep!")
+            
         else:
-            print("Awake!"  + str(max_f))
+            print("Awake!" )
+           
+        previous = asleep
+
 
 if __name__ == '__main__':
     main()
